@@ -24,10 +24,11 @@ def main() -> None:
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     try:
+        import unsloth  # noqa: F401
+        from unsloth import FastLanguageModel
         from datasets import load_dataset
         from trl import SFTTrainer
         from transformers import TrainingArguments
-        from unsloth import FastLanguageModel
     except ImportError as exc:
         raise SystemExit(
             "Install training dependencies in a GPU environment: "

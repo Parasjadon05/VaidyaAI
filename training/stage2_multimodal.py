@@ -42,10 +42,11 @@ def main() -> None:
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     try:
+        import unsloth  # noqa: F401
+        from unsloth import FastVisionModel
         from datasets import load_dataset
         from trl import SFTTrainer
         from transformers import TrainingArguments
-        from unsloth import FastVisionModel
     except ImportError as exc:
         raise SystemExit(
             "Install multimodal training dependencies: unsloth, transformers, trl, datasets."
