@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 
@@ -13,9 +14,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset", default="GBaker/MedQA-USMLE-4-options")
     parser.add_argument("--output-dir", default="checkpoints/stage1")
     parser.add_argument("--epochs", type=int, default=3)
-    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=4)
     parser.add_argument("--learning-rate", type=float, default=2e-4)
-    parser.add_argument("--max-seq-length", type=int, default=8192)
+    parser.add_argument("--max-seq-length", type=int, default=2048)
+    parser.add_argument("--max-steps", type=int, default=-1)
     parser.add_argument(
         "--max-samples",
         type=int,
@@ -28,6 +31,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+    os.environ.setdefault("TORCHDYNAMO_DISABLE", "1")
 
     try:
         import unsloth  # noqa: F401
@@ -105,9 +110,12 @@ def main() -> None:
             output_dir=args.output_dir,
             num_train_epochs=args.epochs,
             per_device_train_batch_size=args.batch_size,
+            gradient_accumulation_steps=args.gradient_accumulation_steps,
             learning_rate=args.learning_rate,
             lr_scheduler_type="cosine",
-            warmup_ratio=0.03,
+            warmup_steps=10,
+            max_steps=args.max_steps,
+            optim="paged_adamw_8bit",
             logging_steps=25,
             save_strategy="epoch",
             fp16=True,
