@@ -10,6 +10,7 @@ The repository is split into four build areas:
 - `training/`: optional A100-scale LoRA pipeline for medical SFT, multimodal alignment, and Hindi DPO.
 - `rag/`: scripts to build a bundled SQLite knowledge base and optional MiniLM embeddings.
 - `eval/`: benchmark harness for held-out MedQA/Hindi-style cases.
+- `docs/offline_mobile_deployment.md`: concrete checklist for turning the MVP into a fully offline Android demo.
 
 ## Primary Architecture
 
@@ -24,6 +25,8 @@ flowchart TD
 ```
 
 Safety-critical logic is outside the model. Red flags escalate triage even if the model is uncertain, and prescription dosage text is stripped from actions.
+
+For the mobile packaging path, see [`docs/offline_mobile_deployment.md`](docs/offline_mobile_deployment.md).
 
 ## Quick Start
 

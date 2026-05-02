@@ -4,6 +4,7 @@ import '../../core/localization/app_language.dart';
 import '../../core/localization/app_strings.dart';
 import '../ai/data/vaidya_ai_service.dart';
 import '../ai/domain/patient_case.dart';
+import '../../screens/settings_screen.dart';
 import '../triage/triage_screen.dart';
 
 class IntakeScreen extends StatefulWidget {
@@ -52,6 +53,20 @@ class _IntakeScreenState extends State<IntakeScreen> {
       appBar: AppBar(
         title: const Text('VaidyaAI'),
         actions: [
+          IconButton(
+            tooltip: 'Offline status',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => SettingsScreen(
+                    language: widget.language,
+                    onLanguageChanged: widget.onLanguageChanged,
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.offline_bolt_outlined),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: SegmentedButton<AppLanguage>(
