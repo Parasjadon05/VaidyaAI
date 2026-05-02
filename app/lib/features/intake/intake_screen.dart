@@ -225,6 +225,21 @@ class _HeroHeader extends StatelessWidget {
               avatar: const Icon(Icons.signal_wifi_off, size: 18),
               label: Text(strings.offlineBadge),
             ),
+            const SizedBox(height: 10),
+            Text(
+              strings.modelStrategyTitle,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: colorScheme.onPrimaryContainer,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              strings.modelStrategyBody,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onPrimaryContainer,
+              ),
+            ),
           ],
         ),
       ),

@@ -2,12 +2,28 @@
 
 VaidyaAI is a hackathon MVP for the Kaggle Gemma 4 Impact Challenge: an offline rural health diagnosis aide for community health workers in rural India.
 
+The MVP strategy is **base Gemma 4 + local clinical RAG + deterministic safety rules**. Fine-tuning is intentionally optional: the app should work without an A100 training run, without cloud inference, and without internet once deployed.
+
 The repository is split into four build areas:
 
-- `app/`: Flutter mobile app with Hindi/English intake, local RAG, safety rules, mock inference, and Ollama runtime adapter.
-- `training/`: three-stage fine-tuning pipeline for medical SFT, multimodal alignment, and Hindi DPO.
+- `app/`: Flutter mobile app with Hindi/English intake, local RAG, deterministic safety rules, and an Ollama/local runtime adapter.
+- `training/`: optional A100-scale LoRA pipeline for medical SFT, multimodal alignment, and Hindi DPO.
 - `rag/`: scripts to build a bundled SQLite knowledge base and optional MiniLM embeddings.
 - `eval/`: benchmark harness for held-out MedQA/Hindi-style cases.
+
+## Primary Architecture
+
+```mermaid
+flowchart TD
+    intake["Symptoms, vitals, optional photo"] --> caseModel["Structured PatientCase"]
+    caseModel --> localRag["Bundled guideline retrieval"]
+    localRag --> prompt["Clinical prompt for base Gemma 4"]
+    prompt --> runtime["On-device/local model runtime"]
+    runtime --> safety["Deterministic safety layer"]
+    safety --> card["Triage card, actions, referral flag"]
+```
+
+Safety-critical logic is outside the model. Red flags escalate triage even if the model is uncertain, and prescription dosage text is stripped from actions.
 
 ## Quick Start
 
@@ -18,9 +34,9 @@ flutter test
 flutter run
 ```
 
-## Training Pipeline
+## Optional Training Pipeline
 
-The training scripts are designed to run on Kaggle/A100-style GPU environments where Unsloth, TRL, datasets, and image tooling are installed.
+The app does not require fine-tuning. These scripts are included for teams with A100/H100 access who want to improve the base model later. Kaggle T4/P100 is not enough for Gemma 4 E4B LoRA in the current stack.
 
 ```sh
 python training/stage1_sft.py --output-dir checkpoints/stage1

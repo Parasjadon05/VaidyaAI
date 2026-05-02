@@ -11,6 +11,12 @@ class AppStrings {
   String get subtitle =>
       t('Offline rural health triage aide', 'ऑफलाइन ग्रामीण स्वास्थ्य सहायता');
   String get offlineBadge => t('Offline mode', 'ऑफलाइन मोड');
+  String get modelStrategyTitle =>
+      t('Base Gemma + local RAG', 'बेस Gemma + लोकल RAG');
+  String get modelStrategyBody => t(
+    'No fine-tune required for the MVP. Guidelines are retrieved locally, then deterministic safety rules override red flags.',
+    'MVP के लिए फाइन-ट्यून जरूरी नहीं. गाइडलाइन लोकल निकाली जाती हैं, फिर सुरक्षा नियम खतरे के संकेतों को प्राथमिकता देते हैं.',
+  );
   String get symptomsLabel => t('Patient symptoms', 'मरीज के लक्षण');
   String get symptomsHint => t(
     'Example: fever for 3 days, cough, rash on arm',
@@ -35,6 +41,10 @@ class AppStrings {
   String get firstAid => t('Immediate actions', 'तत्काल कदम');
   String get referral => t('Referral', 'रेफरल');
   String get guidelines => t('Guideline grounding', 'गाइडलाइन आधार');
+  String get safetyProof => t(
+    'Safety layer applied after model output',
+    'मॉडल आउटपुट के बाद सुरक्षा परत लागू',
+  );
   String get newCase => t('New case', 'नया केस');
   String get redFlags => t('Red flags detected', 'खतरे के संकेत मिले');
   String get noRedFlags =>

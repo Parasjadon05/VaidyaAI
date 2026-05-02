@@ -131,6 +131,11 @@ class TriageScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(result.uncertaintyNote),
+                  const SizedBox(height: 8),
+                  Chip(
+                    avatar: const Icon(Icons.verified_user_outlined, size: 18),
+                    label: Text(strings.safetyProof),
+                  ),
                 ],
               ),
             ),
