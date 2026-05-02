@@ -1,0 +1,8 @@
+accelerate
+datasets
+openai
+sentence-transformers
+torch
+transformers
+trl
+unsloth

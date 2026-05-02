@@ -1,0 +1,42 @@
+[
+  {
+    "id": "fever-ari",
+    "title": "Fever and respiratory symptoms",
+    "language": "en",
+    "conditionTags": ["fever", "cough", "breath", "बुखार", "खांसी", "सांस", "साँस"],
+    "redFlags": ["breathing difficulty", "very high fever", "child under five"],
+    "actions": ["Give fluids", "Keep patient cool", "Refer if breathing is difficult"],
+    "source": "WHO primary care guidance",
+    "text": "Assess fever with cough for respiratory distress, dehydration, and persistent high fever. Refer urgently when danger signs are present."
+  },
+  {
+    "id": "skin-wound",
+    "title": "Skin rash or wound",
+    "language": "en",
+    "conditionTags": ["rash", "wound", "skin", "pus", "दाने", "घाव", "त्वचा"],
+    "redFlags": ["spreading redness", "fever with wound", "severe pain"],
+    "actions": ["Clean with safe water", "Cover with clean dressing", "Refer if spreading or feverish"],
+    "source": "Rural primary care wound guidance",
+    "text": "Inspect wounds and rashes for spreading redness, pus, fever, severe pain, or involvement near eyes. Avoid prescription medicines without clinician review."
+  },
+  {
+    "id": "eye-redness",
+    "title": "Red eye or eye infection",
+    "language": "en",
+    "conditionTags": ["eye", "red eye", "vision", "आंख", "आँख", "लाल आंख"],
+    "redFlags": ["vision loss", "eye trauma", "severe eye pain"],
+    "actions": ["Avoid rubbing eye", "Use clean cloth", "Refer urgently for trauma or vision loss"],
+    "source": "Primary eye care guidance",
+    "text": "Red eye with pain, injury, light sensitivity, or vision change requires urgent referral. Mild discharge without danger signs can be reviewed at PHC."
+  },
+  {
+    "id": "diarrhea-dehydration",
+    "title": "Diarrhea and dehydration",
+    "language": "en",
+    "conditionTags": ["diarrhea", "vomit", "loose stool", "दस्त", "उल्टी"],
+    "redFlags": ["lethargy", "not drinking", "blood in stool"],
+    "actions": ["Give oral fluids", "Continue feeding", "Refer if dehydration signs appear"],
+    "source": "WHO low-resource child health guidance",
+    "text": "Check for dehydration, blood in stool, lethargy, and inability to drink. Refer immediately when danger signs are present."
+  }
+]
